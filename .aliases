@@ -1,0 +1,114 @@
+# Example aliases
+alias y2='youtube-dl --extract-audio --audio-format mp3'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias l.='ls -d .* --color=auto'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+#grepping color enable
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+#Package Management Shortcuts.
+alias update='sudo apt update && sudo apt upgrade -y'
+alias dupdate='sudo apt dist-upgrade -y'
+alias buscar='apt search '
+alias install='sudo apt install -y'
+alias uninstall='sudo apt purge -y'
+alias cleaner='sudo apt clean && sudo apt autoclean && sudo apt autoremove'
+alias info=' apt-cache show'
+alias infos='apt-cache showpkg'
+
+#Storage
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+
+#Process Info
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e" #process grep, pass an argument
+
+#Get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# Get top process eating cpu
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+alias meminfo='free -m -l -t'
+
+#Multimedia:
+alias music='mocp -T green_theme'
+
+#Screen, just if I want to use a vga extern monitor, useful when working with  I3wm.
+alias mnormal='xrandr --output HDMI-1 --auto'
+alias sscreen='xrandr --output HDMI-1 --mode 1280x1024 && xrandr --output eDP-1 --mode 1366x768 &&  xrandr --output eDP-1 --mode 1366x768 --left-of HDMI-1'
+
+#Security
+alias rpassword='dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev'
+alias sha1='openssl sha1'
+
+#Networks
+alias pubip="curl http://ipecho.net/plain; echo"
+alias fastping='ping -c 100 -s.2'
+alias ports='netstat -tulanp'
+
+#PowerManagement!
+alias reboot='sudo /sbin/reboot'
+alias poweroff='sudo /sbin/poweroff'
+alias halt='sudo /sbin/halt'
+alias shutdown='sudo /sbin/shutdown'
+alias suspendd='sudo pm-suspend'
+
+#Git Repositories.
+alias gp='git pull'
+alias gsumary='git log --stat'
+alias grespalabra=' git log -U1 --word-diff'
+alias gdelcambio='git reset HEAD' #File al final
+alias gcommit='git commit -m '
+alias gadd='git add .'
+alias gpush='git push '
+alias gcrama='git co -b'
+alias gsrama='git origin '
+alias gclone='git clone'
+alias gst='git status'
+
+#Secure remove
+alias rms='shred -n 10 -v -z -u '
+
+#Competitive Programming Options.
+alias uri='g++ -std=c++11 -Wall -O2 -o testbench'
+alias solve='./testbench < input.input '
+alias solt='time ./testbench <input.input'
+alias sold='./testbench < input.input>output.output'
+
+#Proxy browser with tunnel support.
+alias proxyserver='ssh -C2qTnN -D 8080 server&'
+alias chromep='google-chrome-beta --proxy-server="socks5://127.0.0.1:8080" '
+
+alias sall="sudo service --status-all" 
+alias python='python3'
+alias ipython='ipython3'
+alias ethupdate='sudo dhclient enp2s0 -v'
+
+
+# Terraform 
+alias tfs='tfswitch'
+alias tfpre='terraform fmt && terraform validate && terraform plan'
+
+#Docker Compose 
+alias dcup='docker-compose up'
+alias dcdestroy='docker-compose down' 
+alias dcstop='docker-compose stop'
+alias dcon='docker-compose start' 
+alias dclogs='docker-compose logs'
+
+alias dcnet='docker network ls'
+alias dcvol='docker volumen ls'
+alias dcps='docker ps'
