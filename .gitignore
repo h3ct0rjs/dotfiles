@@ -1,0 +1,13 @@
+*.DS_Store
+*.LSOverride
+Thumbs.db
+ehthumbs.db
+Icon?
+.bundle
+.terraform
+*.tfstate
+*.tfstate.backup
+.vscode
+*.swp
+*.swo
+*~
