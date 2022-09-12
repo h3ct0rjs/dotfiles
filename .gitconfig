@@ -3,7 +3,7 @@
   email = user@domain.com
   username = h3ct0rjs
 [core]
-  editor = vi
+  editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
 [color]
@@ -23,13 +23,51 @@
   tool = kdiff3
 [difftool]
   prompt = false
+[fetch]
+	prune = true
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  ui = auto
 [alias]
-  c = commit
-  ca = commit -a
-  cm = commit -m
-  cam = commit -am
+  a = "!git status --short | peco | awk '{print $2}' | xargs git add"
   d = diff
-  dc = diff --cached
-  l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+	ds = diff --staged
+  co = checkout
+  ci = commit
+  ca = commit -a
+  ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+  pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+  st = status
+
+  br = branch
+  ba = branch -a
+	nb = branch -b
+  bm = branch --merged
+  bn = branch --no-merged
+
+  df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+  
+	hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+	l = log --graph --pretty=oneline --abbrev-commit --decorate
+	lst= log --stat
+  llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+
+	rmain= rebase main
+	sc= stash clear 
+	sa= stash apply
+	save= stash
+	
+  type = cat-file -t
+  dump = cat-file -p
+  find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+  # edit conflicted file on merge
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  # add conflicted file on merge
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
 [pull]
 	rebase = true

@@ -1,9 +1,11 @@
 # Example aliases
 alias y2='youtube-dl --extract-audio --audio-format mp3'
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -lah'
+alias ls='exa --color=auto'
 alias l.='ls -d .* --color=auto'
+
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
@@ -16,15 +18,14 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-#Package Management Shortcuts.
-alias update='sudo apt update && sudo apt upgrade -y'
-alias dupdate='sudo apt dist-upgrade -y'
-alias buscar='apt search '
-alias install='sudo apt install -y'
-alias uninstall='sudo apt purge -y'
-alias cleaner='sudo apt clean && sudo apt autoclean && sudo apt autoremove'
-alias info=' apt-cache show'
-alias infos='apt-cache showpkg'
+#Package Management Shortcuts
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+alias bu='brew update'
+alias bup='brew upgrade'
+alias bdel='brew uninstall'
+alias bl='brew list'
+alias bsearch='brew search'
+alias bins='brew install '
 
 #Storage
 alias df="df -Tha --total"
@@ -46,16 +47,12 @@ alias meminfo='free -m -l -t'
 #Multimedia:
 alias music='mocp -T green_theme'
 
-#Screen, just if I want to use a vga extern monitor, useful when working with  I3wm.
-alias mnormal='xrandr --output HDMI-1 --auto'
-alias sscreen='xrandr --output HDMI-1 --mode 1280x1024 && xrandr --output eDP-1 --mode 1366x768 &&  xrandr --output eDP-1 --mode 1366x768 --left-of HDMI-1'
-
 #Security
 alias rpassword='dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev'
 alias sha1='openssl sha1'
 
 #Networks
-alias pubip="curl http://ipecho.net/plain; echo"
+alias mypubip="curl http://ipecho.net/plain; echo"
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 
@@ -78,6 +75,25 @@ alias gcrama='git co -b'
 alias gsrama='git origin '
 alias gclone='git clone'
 alias gst='git status'
+alias fupdate='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull \;'
+#Secure remove
+alias rms='shred -n 10 -v -z -u '
+
+#Proxy browser with tunnel support.
+alias proxyserver='ssh -C2qTnN -D 8080 h0rus&'
+alias chromep='google-chrome-beta --proxy-server="socks5://127.0.0.1:8080" '
+alias python='python3'
+alias ipython='ipython3'
+
+#alias kubectl='minikube kubectl'
+# Terraform
+alias tfs='tfswitch'
+alias dummytf='touch main.tf provider.tf data.tf output.tf '
+alias pubip='curl https://ifconfig.me/'
+
+
+#Networking OS
+alias fcache='dscacheutil -flushcache'
 
 #Secure remove
 alias rms='shred -n 10 -v -z -u '
@@ -112,3 +128,7 @@ alias dclogs='docker-compose logs'
 alias dcnet='docker network ls'
 alias dcvol='docker volumen ls'
 alias dcps='docker ps'
+#Docker Utils
+
+alias dcleannone='for i in $(docker images |awk '$2== "<none>" {print $3}') ; do docker image rm -f $i ; done'
+alias dcleanimg='for i in $(docker images |awk '{print $3}') ; do docker image rm -f $i ; done'%
