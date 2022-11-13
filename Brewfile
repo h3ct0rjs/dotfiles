@@ -97,6 +97,8 @@ cask "postman"
 cask "slack", args: { appdir: "/Applications" }
 cask "spotify", args: { appdir: "/Applications" }
 cask "stats"
+cask "surfshark"
 cask "transmission", args: { appdir: "/Applications" }
+cask "tunnelblick"
 cask "visual-studio-code", args: { appdir: "/Applications" }
 cask "wireshark"
